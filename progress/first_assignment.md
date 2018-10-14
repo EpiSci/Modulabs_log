@@ -55,7 +55,7 @@
     - [Docs: tensorflow.contrib](https://www.tensorflow.org/api_docs/python/tf/contrib)  
 
 - **Deploying our package to PyPI, then install with pip**  
-    pip install로 내가 만든 패키지를 배포하는 과정입니다. 자세히 아셔도 좋지만, PyPI라는게 있고, pip으로 설치할 수 있다는  
+    내가 만든 패키지를 배포하는 과정입니다. 자세히 아셔도 좋지만, PyPI라는게 있고, pip으로 설치할 수 있다는  
     정도만 알고 있으면 충분합니다.
     - [Packaging python projects](https://packaging.python.org/tutorials/packaging-projects/)
     - [Python-packaging](https://python-packaging.readthedocs.io/en/latest/)  
