@@ -44,7 +44,7 @@
     - [Learnpython.org - Modules and packages](https://www.learnpython.org/en/Modules_and_Packages)
     - [Guide to 'import' statements](https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports)
     - [Python module-package tutorial (recommended)](https://realpython.com/python-modules-packages/)
-    - [Official python docs - The import system](tutoria://docs.python.org/3/reference/import.html)  
+    - [Official python docs - The import system](tutoria://docs.python.org/3/reference/import)  
 
 - **tensorflow.contrib package structure**  
     Tensorflow/contrib subpackage에는, 공식적으로 지원하기 전의 tensorflow의 experimental code들을 미리 사용해볼 수 있는 모듈들이 있습니다.
