@@ -47,8 +47,8 @@
     - [Official python docs - The import system](tutoria://docs.python.org/3/reference/import)  
 
 - **tensorflow.contrib package structure**  
-    Tensorflow/contrib subpackage에는, 공식적으로 지원하기 전의 tensorflow의 experimental code들을 미리 사용해볼 수 있는 모듈들이 있습니다.
-    잘 알려진 패키지로는 tf.contrib.{slim, gan, rnn, layers} 등 인데요, 이 코드를 벤치마킹해서 **'쉽게 가져다 쓸 수 있는'** 코드를 작성하는 방법을
+    Tensorflow/contrib subpackage에는, tensorflow에서 공식적으로 지원하기 전의 experimental code들을 미리 사용해볼 수 있는 모듈들이 있습니다.
+    잘 알려진 패키지로 tf.contrib.{slim, gan, rnn, layers} 등이 있는데요, 이 코드들을 벤치마킹해서 '쉽게 가져다 쓸 수 있는' 코드를 작성하는 방법을
     앞으로도 계속 배울 예정입니다.  
     (미리 조금 봐놓아도 좋겠죠? ^^)  
     - [Github: tensorflow.contrib](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib)  
@@ -67,13 +67,14 @@
 
 - **Python style guide - PEP8, pylint, (flask8)**  
     좋은 코드란 화려한 코드가 아닌 읽기 쉽고, 단순하고, 이해하기 쉬운 코드입니다.  
-    변수 네이밍부터 시작해 별것 아닌것 같아 보였던 공백의 개수까지 하나 하나 신경써주어야 하는데요, 이를 위해 잘 알려진 파이썬 스타일 가이드라인을 준수하도록 노력해야 합니다. tensorflow는 [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)를 따르며,
-    스타일 가이드를 위한 툴인 Pylint를 사용하는 방법 또한 배웁니다.
+    변수 네이밍부터 시작해 별 것 아닌것 같아 보였던 공백의 개수까지 하나 하나 신경써주어야 하는데요,  
+    이를 위해 잘 알려진 파이썬 스타일 가이드라인을 준수하도록 노력해야 합니다. tensorflow는 파이썬 코드에 대해 [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)를 따릅니다.
+    또 코딩 스타일 가이드 툴 중 하나인 Pylint를 사용하는 방법 또한 배웁니다.
     - [Pylint tutorial](http://pylint.pycqa.org/en/1.9/tutorial.html)  
 
 - **Git basic usage**  
-    SafeAI Lab은 **Github.com/EpisysScience**에서 같이 코드를 작성하게 됩니다. VCS의 개념, Git에 대한 기본적인 사용법(Pull request, commit, push ..)을 
-    알고 계시면 진행하는데 어려움이 없겠죠? ^ㅡ^
+    SafeAI Lab은 [Github.com/EpisysScience](https://github.com/EpisysScience)에서 같이 코드를 작성하게 됩니다. VCS의 개념, Git에 대한 기본적인 사용법(Pull request, commit, push ..)을 
+    알고 계시면 협업을 진행하는데 어려움이 없겠죠? ^ㅡ^
     - [Git basic tutorial](https://guides.github.com/activities/hello-world/)  
     
 
