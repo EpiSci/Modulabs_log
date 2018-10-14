@@ -78,7 +78,7 @@
     - [Git basic tutorial](https://guides.github.com/activities/hello-world/)  
     
 
-## Our first task
+## Our first task (~ Oct 19, 2018)
 저희의 첫 번째 과제는, 
 1. 먼저 이 레포지토리를 fork하시고
 2. 위에 나열된 Prerequisite 항목들 중 어떤 주제라도 골라서 공부하신 뒤, 
