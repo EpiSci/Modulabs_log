@@ -25,11 +25,15 @@ In Python planet,
 - Every file ends with ```.py``` is considered as **a module.**  
 - Every module lives in their own small world, we refer to them as the **module scope**, or **namespace**
 - **Package** is simply a directory that contains one or more python modules, or extra subpackage(s) organized with hierarchical structure.  
-In python 2, you should explicitly tell python interpreter that the directory is a pacakge by putting \_\_init\_\_.py file in the root of the package.  
-Since python 3, every directory that has module(s) inside of it becomes a pacakge.  
+In python 2, **you should explicitly tell python interpreter** that we want this directory be a python pacakge by putting \_\_init\_\_.py file in the root of the package.  
+Since python 3, every directory that has module(s) inside of it will become a pacakge.  
   
-Of course there should be more `
+Please check [official docs](https://docs.python.org/3/tutorial/modules.html) for more elaborated examples.
+
 ### 3. The **import** statement
+```python
+import tensorflow
+```
 ### 4. Package, Subpackage, \_\_init\_\_.py
 ### 5. Interactive execution (REPL mode)
 ### 6. Execute python file as a **module** or as a **standalone** script
