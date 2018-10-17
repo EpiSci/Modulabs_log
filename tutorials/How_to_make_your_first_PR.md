@@ -225,14 +225,47 @@ to synchronize local changes with other remote repository.
 ### Branches
 > "Nearly every VCS has some form of branching support. 
 Branching means you diverge from the main line of development 
-and continue to do work without messing with that main line.", - from Gitbook
+and continue to do work without messing with that main line.", - from Gitbook, Git branching  
+
+In Git, the command `branch` plays really important role. It **logically branch the flow of commits** 
+into multiple commit streams, without messing them one another.  
+First we need to see how branches and remotes are represented in the commit graph.
+```bash
+$ git log --oneline --decorate --all --graph
+* bd0492e - Wed, 17 Oct 2018 23:29:43 +0900 (5 seconds ago) (HEAD -> master)
+|           second commit - 2sang
+* 9c1d848 - Wed, 17 Oct 2018 23:29:18 +0900 (30 seconds ago)
+            Init - 2sang
+```
+Above commit graph has two commits in single graph. each has unique hash ID,  
+`bd0492e`, `9c1d848` along with committed timestamp. And one more, `(HEAD -> master)`.
+shows current work
+
 
 - `master`, is the name of the default **branch** in the git local/remote repository.  
 
 ## 4. How the graph is changing over multiple commits(WIP)
 ## 5. Fork, Pull Request(WIP)
+## 6. Miscellaneous
+Prettifying git logs:
+```bash
+# Make alias of frequently used log command with prettify options, consider adding this line at your .*rc file.
+# To see more aliases like this, see https://gist.github.com/pksunkara/988716
+$ alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
-
-
-
-
+$ glg
+* 33d3b34 - Wed, 17 Oct 2018 22:31:40 +0900 (45 minutes ago) (HEAD -> 2sang, 2sang-repo/2sang)
+|           Working on section 4, 5 in git tutorial - 2sang
+*   52d2fcc - Tue, 16 Oct 2018 21:41:05 +0900 (26 hours ago) (origin/master, origin/HEAD)
+|\            Merge pull request #1 from 2sang/2sang - Sangsu Lee
+| * a9d6aa8 - Tue, 16 Oct 2018 21:31:52 +0900 (26 hours ago)
+| |           Add git tutorial - WIP - 2sang
+| * 90bc340 - Tue, 16 Oct 2018 15:13:15 +0900 (32 hours ago)
+| |           Add Git tutorial - 2sang
+| * 92f12b3 - Tue, 16 Oct 2018 08:59:55 +0900 (2 days ago)
+| |           fix grammar - 2sang
+| * 01e7fa9 - Mon, 15 Oct 2018 23:43:30 +0900 (2 days ago)
+|/            Add draft - 2sang
+* df83a50 - Mon, 15 Oct 2018 18:03:52 +0900 (2 days ago) (2sang-repo/master, master)
+|           Move prerequisite contents to Guide.md - 2sang
+```
