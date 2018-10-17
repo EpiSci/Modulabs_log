@@ -23,7 +23,7 @@ $ brew install git
 ```
 There are many different GUI-based client tools out there for committing and browsing git commits, but I strongly recommend beginners to start with 
 the commnad-line interface that comes with git scm.  
-Note that if you're using Windows OS, you'll already have **git bash** executable after the installation is done.  
+If you're using Windows OS, you'll already have **git bash** executable after the installation is done.  
 (See [how-to-install-git-bash-on-windows](http://www.techoism.com/how-to-install-git-bash-on-windows/) for more details.)  
 Lastly, ensure that the ```git``` command works fine on your local machine:
 ```bash
@@ -165,7 +165,7 @@ $ git log --all --decorate --oneline --graph
 Now we have the commits ready to be synchronized with other repository.  
 target repository URL could be your own git server, or public/private github repository, or could be other URL that serves git.  
 For this example, If you haven't sign up for Github yet, please do, then create an emtpy repository **without** the README.md file.
-I just have created mine and named it 'myrepo'. Any name would be fine, we'll push our local changes to this **remote repository**.
+I just have created mine and named it 'myrepo'. Any name would be fine, we'll just push our local changes to this **remote repository**.
 
 
 ```bash
@@ -177,11 +177,60 @@ $ git push myrepo master
 ```
 That's it for this section! check your github repository to see if your local changes are applied. 
 
-## Remotes, Branches(WIP)
-- `origin`, is the name of the default **remote** that pointing the repository url you've cloned from. 
-- `master`, is the name of the **branch** in the git repository.
-## How the graph is changing over commits(WIP)
-## Fork, Pull Request(WIP)
+## 3. Remotes, Branches
+### Remotes
+If we `git clone` the project from the existing git repository url(usually ends with \*.git),
+```bash
+$ git clone https://github.com/2sang/myrepo.git
+Cloning into 'myrepo'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 9 (delta 3), reused 6 (delta 4), pack-reused 0
+Unpacking objects: 100% (9/9), done.
+
+$ cd myrepo
+$ git remote -v
+origin  https://github.com/2sang/myrepo (fetch)
+origin  https://github.com/2sang/myrepo (push)
+```
+As shown above, We can see current list of remotes using `git remote -v`, and see
+the remote `origin` has been set to the repository we've just cloned from.  
+Just like we've gone through from the scratch with `git init` command, **local repository 
+does not have any remotes unless we explicitly set their name and corresponding URL.**  
+However, if we clone the repository directly from remote repository, git sets local 
+repository's default remote to `origin`, with URL of that repository.  
+
+
+Notice that we can have multiple remotes each with different names. This is actually a quite common situation 
+to having them in a single local repository when you're working with same repositories with different versions, and vice versa.
+```bash
+# git remote add <remote_name> <remote_url>
+$ git remote add real_origin https://github.com/EpisysScience/myrepo
+
+# Now we have two remotes, 2sang/myrepo as 'origin' and EpisysScience/myrepo named as real_origin
+$ git remote -v
+origin  https://github.com/2sang/myrepo (fetch)
+origin  https://github.com/2sang/myrepo (push)
+real_origin  https://github.com/EpisysScience/myrepo (fetch)
+real_origin  https://github.com/EpisysScience/myrepo (push)
+```
+Things are getting a little more complicated if we have multiple remotes in multiple branches, but no worries, we'll get it soon.  
+To summarize about the `remote`,
+- `remote` represents a remote repository's name with its URL.
+- `origin`, is the name of the default **remote repository** which 
+points to the repository url you've cloned from. 
+- when you first `git init` from directory, you should explicitly set the remote in order
+to synchronize local changes with other remote repository.
+### Branches
+> "Nearly every VCS has some form of branching support. 
+Branching means you diverge from the main line of development 
+and continue to do work without messing with that main line.", - from Gitbook
+
+- `master`, is the name of the default **branch** in the git local/remote repository.  
+
+## 4. How the graph is changing over multiple commits(WIP)
+## 5. Fork, Pull Request(WIP)
 
 
 
