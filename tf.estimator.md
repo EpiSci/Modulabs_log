@@ -1,15 +1,27 @@
 # tf.estimator
-It is a high-level API that is officially provided by TensorFlow. 
-The advantage of using `tf.estimator` is that the code automatically build a graph and a tensorboard itself. 
-A user only needed to specify features and labels and plug into the estimator functions. 
-Just like PyTorch, the Estimator can differentiate `training` and `evaluation`. 
+The Estimator is a high-level API that is officially provided by TensorFlow. One of the advantages of using `tf.estimator` is that the code automatically builds a graph and a tensorboard itself. A user only needs to specify required arguments, such as features, optimizer, and labels, and plug into the estimator class. 
+Just like PyTorch, the Estimator can easily switch to training, evaluation, or test modes without creating individual methods. 
 Also, estimators are built upon the `tf.keras.layers` which simplifies the customization.
-Moreover, it is required to know the use of `estimator`  when you want to use TPU, because TensorFlow offers `TPUEstimator` which extends to `estimator`.
+It is preferred to know the Estimator usage because TensorFlow offers `TPUEstimator` which extends to the Estimator class.
+
+The entire structure of constructing estimator model is shown below.
+
+```py
+def model_fn(features, targets, mode, params):
+   # Logic to do the following:
+   # 1. Configure the model via TensorFlow operations
+   # 2. Define the loss function for training/evaluation
+   # 3. Define the training operation/optimizer
+   # 4. Generate predictions
+   return predictions, loss, train_op
+```
+
+It is always easy to understand the new classes with the relevant example code.
 
 
 ## Example code: [linear_regression.py](https://github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/examples/get_started/regression/linear_regression.py)
 
-1. Create a dictionary, `feature_columns` that represents keys and values of features.
+1. We need a certain container that stores features of the data. In this example, we create a dictionary, `feature_columns` that represents keys and values of features.
 
 ```py
 feature_columns = [
@@ -19,17 +31,16 @@ feature_columns = [
 ]
 ```
 
-`tf.feature_column.numeric_column` represents real valued or numerical features with designated key value.  `key1` and `key2` are categorical features of provided data.
+`tf.feature_column.numeric_column` represents real-valued or numerical features with designated key value.  `key1` and `key2` are categorical features of the provided data.
 
-2. Build the Estimator.
+2. We build a simple linear regression estimator based on the created dictionary.
 
 ```py
 model = tf.estimator.LinearRegressor(feature_columns=feature_columns)
 ```
 
-We select linear regression as a deep learning model and previously built `feature_columns` to label.
-
-Examples of models are listed below.
+The created model represents a linear regression function with the `feature_columns`.
+Other estimator models are described below.
 
 * [linear_regression.py](https://www.github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/examples/get_started/regression/linear_regression.py)
 * [linear_regression_categorical.py](https://www.github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/examples/get_started/regression/linear_regression_categorical.py)
@@ -43,7 +54,7 @@ Examples of models are listed below.
 model.train(input_fn=input_train, steps=STEPS)
 ```
 
-`input_train` is customized generator including batch and shuffle features containing train data. At every 100 steps, the Estimators compute the output.
+`input_train` is a customized generator including batch and shuffle features containing train data. At every 100 steps, the Estimators compute the output.
 
 4. Evaluate how the model performs on data it has not yet seen.
 
@@ -51,7 +62,7 @@ model.train(input_fn=input_train, steps=STEPS)
 eval_result = model.evaluate(input_fn=input_test)
 ```
 
-`input_test` is another customized generator without shuffle feature containing validation data.
+`input_test` is another customized generator without shuffle feature, because a validation usually processes with a regular dataset.
 
 5. The evaluation returns a Python dictionary. The "average_loss" key holds the Mean Squared Error (MSE).
 
@@ -75,9 +86,7 @@ Use the Estimator to predict the test data.
 
 
 ## ModeKeys and EstimatorSpec
-Two are the fundamental classes defined at  [tensorflow/python/estimator/model_fn.py](https://www.github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/python/estimator/model_fn.py).
-By calling `tf.estimator.ModeKeys.<ModeKeys>`, a user can switch different operations at corresponded modes.
-All the `ModeKeys` have 3 kinds and each requires certain fields.
+Both are the fundamental classes defined at  [tensorflow/python/estimator/model_fn.py](https://www.github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/python/estimator/model_fn.py). By calling `tf.estimator.ModeKeys.<ModeKeys>`, the Estimator performs corresponded operations designated at each modes. `ModeKeys` has 3 modes and each requires certain fields.
 
 * **TRAIN** requires `loss` and `train_op`.
 * **EVAL** requires `loss`.
@@ -103,11 +112,9 @@ classifier = tf.estimator.DNNClassifier(
 	n_classes=3)
 ```
 
-Without calling `tf.variable_scope()` or building models, the graph, tensorboard, and model specification are all done automatically using `tf.estimator`.
+All the graph, tensorboard, and model specifications are automatically performed using `tf.estimator`, without specifying `tf.variable_scope()` or building models. Then, the specified operations and objects returned from a `model_fn` are passed through EstimatorSpec which is defined [here](https://github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/python/estimator/model_fn.py#L67). 
 
-Then, the specified operations and objects returned from a `model_fn` are passed through EstimatorSpec which is defined [here](https://github.com/tensorflow/tensorflow/blob/r1.11/tensorflow/python/estimator/model_fn.py#L67).
-`EstimatorSpec` fully defines the model to be run by an Estimator.
-Referred to the `ModeKeys`, each mode's required fields are passed through `EstimatorSpec`.
+`EstimatorSpec` fully defines the model to be run by an Estimator. `EstimatorSpec` takes required fields regarding specified `ModeKeys`.
 
 ```py
 tf.estimator.EstimatorSpec(
