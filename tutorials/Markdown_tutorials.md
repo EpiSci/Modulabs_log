@@ -84,7 +84,8 @@
 ```
 
 의 결과로
-> I believe I can fly.  
+> I believe I can fly. 
+
 가 출력되는 것이죠.  
 
 '>'의 개수는 여러개 쓰셔도 됩니다. 개수만큼 회색 세로바가 추가되어요.
@@ -146,6 +147,7 @@
 이 때는 역슬래시 `\`를 각 문자 앞에 붙여주시면 됩니다.
 `\*\*나는 이렇게 하려고 했어...\*\*`  
 이렇게요.  
+
 
 ## 목록
 문서를 작성할 때, 체계적으로 내용을 나눌 수 있는 방법은 바로 목록을 작성하고 이에 맞게 내용을 적는 것입니다.  
@@ -349,11 +351,11 @@ print("성공")
 다른 방법 또한 있습니다.  
 HTML의 이미지 영역을 직접 입력하는 것입니다.
 ```html
-<img http://www.wikileaks-kr.org/news/photo/201810/38427_15223_1249.jpg>
+<img src=http://www.wikileaks-kr.org/news/photo/201810/38427_15223_1249.jpg>
 ```
 
 을 본문에 입력하면
-<img http://www.wikileaks-kr.org/news/photo/201810/38427_15223_1249.jpg>
+<img src=http://www.wikileaks-kr.org/news/photo/201810/38427_15223_1249.jpg>
 
 이렇게 동일하게 이미지를 나타낼 수 있습니다.  
 물론 HTML 형식에 맞추어 크기를 조절해줄 수도 있겠죠?
