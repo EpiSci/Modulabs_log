@@ -15,6 +15,6 @@
 
 ### 모듈 사용 예시 코드
 
-![module_my_example](./module_myexample_1.png)
-![module_my_example](./module_myexample_2.png)
-![module_my_example](./module_myexample_3.png)
+![module_my_example](./module_myexample_1.PNG)
+![module_my_example](./module_myexample_2.PNG)
+![module_my_example](./module_myexample_3.PNG)
