@@ -16,7 +16,7 @@
 ### 모듈 사용 예시 코드
 
 #### 1. 파일 디렉토리
-![module_my_example](./module_myexample_1.PNG) {:width: 150, height:150}
+![module_my_example](./module_myexample_1.PNG) {:width="150", height="150"}
 #### 2. main.py  
 ![module_my_example](./module_myexample_2.PNG)
 #### 3. functions.py 
