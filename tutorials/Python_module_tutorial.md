@@ -18,6 +18,6 @@
 #### 1. 파일 디렉토리
 <img src="./module_myexample_1.PNG" width="50%">
 #### 2. main.py  
-![module_my_example](./module_myexample_2.PNG)
+<img src="./module_myexample_2.PNG" width="50%">
 #### 3. functions.py 
-![module_my_example](./module_myexample_3.PNG)
+<img src="./module_myexample_3.PNG" width="50%">
