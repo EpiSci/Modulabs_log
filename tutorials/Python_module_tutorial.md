@@ -6,10 +6,15 @@
 3. 모듈은 함수보다 상위 개념
 
 ![module_example](./module_example.png)
-###   [그림 1] 모듈(module) 예시 (출처: https://wikidocs.net/1074)
 
 ### 파이썬에서 모듈을 사용하는 이유?
 > 코드 재사용을 위해서 사용
 
 ### 모듈 사용하는 방법
 > 함수가 정의되어 있는 파일 자체를 복사한 후, 모듈을 import 하기만 하면 해당 파일(모듈)에 구현된 모든 함수 및 자료구조 사용 가능
+
+### 모듈 사용 예시 코드
+
+![module_my_example](./module_myexample_1.png)
+![module_my_example](./module_myexample_2.png)
+![module_my_example](./module_myexample_3.png)
