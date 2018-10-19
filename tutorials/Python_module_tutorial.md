@@ -16,5 +16,8 @@
 ### 모듈 사용 예시 코드
 
 ![module_my_example](./module_myexample_1.PNG)
-![module_my_example](./module_myexample_2.PNG){: width="200" height="200"}{: .left}
-![module_my_example](./module_myexample_3.PNG){: width="200" height="200"}{: .left}
+    #### 파일 디렉토리
+![module_my_example](./module_myexample_2.PNG)
+    #### main.py
+![module_my_example](./module_myexample_3.PNG)
+    #### functions.py
