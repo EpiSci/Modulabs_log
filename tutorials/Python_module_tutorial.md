@@ -5,7 +5,8 @@
 2. 일반적인 워드 파일에서 .docx 확장자가 붙는 것 처럼, 보통 파이썬 코드는 .py 확장자 사용
 3. 모듈은 함수보다 상위 개념
 
-![module_example](./module_example.png "[그림 1] 모듈(module) 예시 (출처: https://wikidocs.net/1074)")
+![module_example](./module_example.png)
+###   [그림 1] 모듈(module) 예시 (출처: https://wikidocs.net/1074)
 
 ### 파이썬에서 모듈을 사용하는 이유?
 > 코드 재사용을 위해서 사용
