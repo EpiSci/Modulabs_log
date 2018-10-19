@@ -16,8 +16,10 @@
 ### 모듈 사용 예시 코드
 
 #### 1. 파일 디렉토리
-<img src="./module_myexample_1.PNG" width="50%">
+<img src="./module_myexample_1.PNG" width="50%"/>
+
 #### 2. main.py  
-<img src="./module_myexample_2.PNG" width="50%">
+<img src="./module_myexample_2.PNG" width="50%"/>
+
 #### 3. functions.py 
-<img src="./module_myexample_3.PNG" width="50%">
+<img src="./module_myexample_3.PNG" width="50%"/>
