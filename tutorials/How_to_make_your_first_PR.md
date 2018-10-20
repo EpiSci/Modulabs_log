@@ -1,7 +1,7 @@
 # Git: Guide to your first pull request
 ## Table of contents
 1. Getting started  
-2. Git init, git add, git commit, git push  
+2. Init, Add, Commit, Push  
 3. Remotes, branches
 4. How the graph is changing over commits
 5. Fork, pull request
@@ -40,7 +40,7 @@ git version 2.17.0
 ```
 Nice, now we're all set! 
 
-## 2. Git init, git add, git commit, git push
+## 2. Init, Add, Commit, Push
 ### Git init
 1. First let's make an empty directory, `myfolder/`  
 2. cd into `myfolder/`,  
@@ -159,7 +159,7 @@ To check the commit log graph visually in command line, try:
 $ git log --all --decorate --oneline --graph
 * 8167612 (HEAD -> master) Add haha, hoho
 (END)
-```  
+```
 
 ### Git push
 Now we have the commits ready to be synchronized with other repository.  
@@ -195,9 +195,9 @@ origin  https://github.com/2sang/myrepo (fetch)
 origin  https://github.com/2sang/myrepo (push)
 ```
 As shown above, We can see current list of remotes using `git remote -v`, and see
-the remote `origin` has been set to the repository we've just cloned from.  
-Just like we've gone through from the scratch with `git init` command, **local repository 
-does not have any remotes unless we explicitly set their name and corresponding URL.**  
+the remote `origin` is set to the repository we've just cloned from.  
+Just like we have gone through from the scratch with `git init` command, **local repository 
+cannot have any remotes unless we explicitly set them with their name.**
 However, if we clone the repository directly from remote repository, git sets local 
 repository's default remote to `origin`, with URL of that repository.  
 
@@ -216,7 +216,7 @@ real_origin  https://github.com/EpisysScience/myrepo (fetch)
 real_origin  https://github.com/EpisysScience/myrepo (push)
 ```
 Things are getting a little more complicated if we have multiple remotes in multiple branches, but no worries, we'll get it soon.  
-To summarize about the `remote`,
+#### Summary - remotes
 - `remote` represents a remote repository's name with its URL.
 - `origin`, is the name of the default **remote repository** which 
 points to the repository url you've cloned from. 
@@ -227,9 +227,9 @@ to synchronize local changes with the remote repository.
 Branching means you diverge from the main line of development 
 and continue to do work without messing with that main line.", - from Gitbook, Git branching  
 
-In Git, the command `branch` plays really important role. It **logically branches the flow of commits** 
+In Git, the command `branch` plays a really important role. It **logically branches the flow of commits** 
 into multiple commit streams, without messing them one another.  
-First, see how branches and remotes are showed in the commit graph.
+First, see how branches and remotes are shown in commit graph.
 ```bash
 $ git log --oneline --decorate --all --graph
 * bd0492e - Wed, 17 Oct 2018 23:29:43 +0900 (5 seconds ago) (HEAD -> master)
@@ -237,19 +237,94 @@ $ git log --oneline --decorate --all --graph
 * 9c1d848 - Wed, 17 Oct 2018 23:29:18 +0900 (30 seconds ago)
             Init - 2sang
 ```
-Above commit graph has two commits in single graph. Each has a unique hash ID: `bd0492e`, `9c1d848` along with the commit timestamp.  
-There's one more, `(HEAD -> master)`. `HEAD` is a reference to the last commit in the current branch that you're in,
-and it is pointing to `master` branch. Though we have the only one here, 
-you'll easily find a number of branches in other popular repositories.
+It has two commits in single graph and each has a unique hash ID: `bd0492e`, `9c1d848` along with the commit timestamp. 
+We can see there's one more `(HEAD -> master)`, `HEAD` is **a reference to the last commit in the current branch that you're in**,
+and it is pointing to `master` branch. Though we have the only one branch here, you can easily find there are a number of branches in 
+other popular git repositories.
 
-#### Create new branch
+#### Create a new branch
 To create a new branch, 
+```bash
+# Give branch name after the command
+$ git branch <new_brach_name>
+
+# Or, use checkout command with option '-b'. This instantly switches to new branch with the creation.
+$ git checkout -b <new_branch_name>
+```
+To list all branches, use '--all' option.
+```bash
+$ git branch new_branch
+
+$ git branch --all # or '-a'
+* master
+  new_branch
+  remotes/origin/master -> origin/master
+```
+
 #### Checkout to other branch
+To switch from current working branch to another, 
+```bash
+$ git checkout <branch_name>
+```
+**Make sure all local changes are committed before switching to other branch**, otherwise git will refuse to checkout.
+#### Summary - branches
 
-- `master`, is the name of the default **branch** in the git local/remote repository when you first initialize the git repository.  
-
+- `HEAD` points to the last commit in the current branch.
+- `master`, is the name of the default **branch** in the git local/remote repository when you first initialize the git repository. 
+- To create a branch, `git branch <new_branch_name>`, or `git checkout -b <new_branch_name>`.
+- To switch the branch, `git checkout <branch_name>`.
 
 ## 4. How the graph is changing over multiple commits(WIP)
+So far we've covered a few basic git commands and its usage, and now let's see how the 
+commit graph is changing with some examples.  
+
+#### Fixing urgent bug
+Let's suppose that we have a small web service currently running on the server, and we have found
+some minor warnings keep on being reported on our log system. It turned out we still have a few lines of code remaining that should have been deleted in last release.  
+
+<img src="assets/git_case1-1.png" alt="drawing" width="200" height="200"/>  
+
+To keep the `master` branch from changing while we're fixing the issue, we decided to switch our working environment to new branch `hotfix`, out from the master branch.
+```bash
+$ git branch hotfix-152
+$ git checkout hotfix-152
+Switched to branch 'hotfix'
+
+# And after the fixing done, add and commit the changes
+$ git add <fixed_files>
+$ git commit -m "Fix issue-152"
+```
+Now, local commit graph will look like this:  
+
+<img src="assets/git_case1-2.png" alt="drawing" width="500"/>  
+
+After we verified that `hotfix` branch has no failures in all testsets, 
+our team decided to merge `hotfix` branch to `master`:
+```bash
+$ git checkout master
+# Merge 'hotfix' from 'master'
+$ git merge hotfix
+Updating 4ec0dc1..16eb0c4
+Fast-forward
+ fixed_file_1.cpp | 5
+ 1 file changed, 0 insertions(+), 5 deletions(-)
+ create mode 100644 cc
+```
+Git does a **Fast-forward** when you merge a branch that is ahead of your switched branch, just like this case.
+<img src="assets/git_ff.png" alt="drawing" width="500"/>
+This briefly shows how fast-forward merge works. [(Image from bitbucket tutorial)](https://confluence.atlassian.com/bitbucket/git-fast-forwards-and-branch-management-329977726.html)  
+
+Note that **`git merge` command should be invoked from the base branch**, where you want to pull the other branch in. In this case, we switched to `master` branch to merge `hotfix`.  
+
+Our final commit graph after the merging:
+<img src="assets/git_case1-3.png" alt="drawing" width="500"/>  
+
+Notice that the `master` branch has moved from the last release to hotfix(technically, master merged hotfix, right?), and `hotfix` branch still remains after the merger. To delete the branch,
+```
+$ git branch --delete hotfix
+Deleted branch hotfix (was 16eb0c4).
+```
+
 ## 5. Fork, Pull Request(WIP)
 ## 6. Miscellaneous
 Prettifying git logs:
