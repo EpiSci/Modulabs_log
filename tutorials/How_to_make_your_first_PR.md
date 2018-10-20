@@ -221,15 +221,15 @@ To summarize about the `remote`,
 - `origin`, is the name of the default **remote repository** which 
 points to the repository url you've cloned from. 
 - when you first `git init` from directory, you should explicitly set the remote in order
-to synchronize local changes with other remote repository.
+to synchronize local changes with the remote repository.
 ### Branches
 > "Nearly every VCS has some form of branching support. 
 Branching means you diverge from the main line of development 
 and continue to do work without messing with that main line.", - from Gitbook, Git branching  
 
-In Git, the command `branch` plays really important role. It **logically branch the flow of commits** 
+In Git, the command `branch` plays really important role. It **logically branches the flow of commits** 
 into multiple commit streams, without messing them one another.  
-First we need to see how branches and remotes are represented in the commit graph.
+First, see how branches and remotes are showed in the commit graph.
 ```bash
 $ git log --oneline --decorate --all --graph
 * bd0492e - Wed, 17 Oct 2018 23:29:43 +0900 (5 seconds ago) (HEAD -> master)
@@ -237,12 +237,17 @@ $ git log --oneline --decorate --all --graph
 * 9c1d848 - Wed, 17 Oct 2018 23:29:18 +0900 (30 seconds ago)
             Init - 2sang
 ```
-Above commit graph has two commits in single graph. each has unique hash ID,  
-`bd0492e`, `9c1d848` along with committed timestamp. And one more, `(HEAD -> master)`.
-shows current work
+Above commit graph has two commits in single graph. Each has a unique hash ID: `bd0492e`, `9c1d848` along with the commit timestamp.  
+There's one more, `(HEAD -> master)`. `HEAD` is a reference to the last commit in the current branch that you're in,
+and it is pointing to `master` branch. Though we have the only one here, 
+you'll easily find a number of branches in other popular repositories.
 
+#### Create new branch
+To create a new branch, 
+#### Checkout to other branch
 
-- `master`, is the name of the default **branch** in the git local/remote repository.  
+- `master`, is the name of the default **branch** in the git local/remote repository when you first initialize the git repository.  
+
 
 ## 4. How the graph is changing over multiple commits(WIP)
 ## 5. Fork, Pull Request(WIP)
